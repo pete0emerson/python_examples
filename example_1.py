@@ -75,13 +75,19 @@ class example1:
 		# Parse the GET parameters to create the WHERE clause of the SQL statement
 		params = web.input()
 		wheres = []
+		joiner = 'AND'
 		for key in params:
-			valuesList = web.websafe(params[key]).split(',')
-			wheres.append(key + ' IN ("' + '", "'.join(valuesList) + '")')
+			# If we pass in join=or, then we'll use OR in our WHERE clause instead of AND
+			if key == 'join':
+				if params[key].upper() == 'OR':
+					joiner = 'OR'
+			else:
+				valuesList = web.websafe(params[key]).split(',')
+				wheres.append(key + ' IN ("' + '", "'.join(valuesList) + '")')
 		sql = "SELECT * FROM " + request
 
 		if wheres:
-			sql = sql + ' WHERE ' + ' AND '.join(wheres)
+			sql = sql + ' WHERE ' + (' ' + joiner + ' ').join(wheres)
 
 		# Create a hash of the query for a memcache lookup
 		sqlhash = hashlib.md5(sql).hexdigest()
