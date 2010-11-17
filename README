@@ -1,0 +1,48 @@
+Preconditions to running the examples:
+
+1) MySQL is running
+2) Memcached is running
+3) Python modules are installed (some may come with your Python installation):
+	web.py
+	ConfigParser
+	memcache
+	simplejson
+
+Links I found useful in creating the examples:
+
+http://stackoverflow.com/questions/868690/good-examples-of-python-memcache-memcached-being-used-in-python
+http://webpy.org/
+http://oreilly.com/catalog/lpython/chapter/ch09.html
+http://docs.python.org/library/configparser.html
+http://svn.red-bean.com/bob/simplejson/tags/simplejson-1.3/docs/index.html
+
+Use curl or your browser in order to view the pages.
+
+###########################################################################
+
+Example 1:
+
+This example uses ConfigParser to parse a configuration file that stores MySQL and Memcache information.
+It pulls data from MySQL and returns it in JSON form, and uses Memcache to store the results for a short period of time.
+It also parses the GET parameter and transforms that into a WHERE clause.
+For pretty printing, pipe the output to pretty_json.py:
+
+$ curl -s 'localhost:8080/example1?id=1,2' | ./pretty_json.py 
+{
+    "memcache": "433241ffedc7699afcf9cb0b37700d43", 
+    "data": [
+        {
+            "created": "2010-10-01 01:00:00", 
+            "id": 1, 
+            "title": "This is my first title"
+        }, 
+        {
+            "created": "2010-10-02 02:00:00", 
+            "id": 2, 
+            "title": "This is my second title"
+        }
+    ], 
+    "response": "okay"
+}
+
+###########################################################################
