@@ -16,6 +16,8 @@ http://oreilly.com/catalog/lpython/chapter/ch09.html
 http://docs.python.org/library/configparser.html
 http://svn.red-bean.com/bob/simplejson/tags/simplejson-1.3/docs/index.html
 
+If an example has a .sql file, load that into your database prior to running the python script.
+
 Use curl or your browser in order to view the pages.
 
 ###########################################################################
