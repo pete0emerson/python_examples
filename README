@@ -47,4 +47,10 @@ $ curl -s 'localhost:8080/example1?id=1,2' | ./pretty_json.py
     "response": "okay"
 }
 
+URLs that should work:
+
+$ curl -s 'localhost:8080/example1'
+$ curl -s 'localhost:8080/example1?id=1'
+$ curl -s 'localhost:8080/example1?id=1,2'
+
 ###########################################################################
